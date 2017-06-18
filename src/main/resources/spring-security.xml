@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns="http://www.springframework.org/schema/security" 
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http security="none" pattern="/login.html" />
+	<http security="none" pattern="/static/**" />
+	
+	<http use-expressions="true" auto-config="true">
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+		
+		<session-management>
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+		</session-management>
+		<csrf disabled="true"/>
+		<form-login login-page="/login.html" 
+			authentication-failure-handler-ref="authenticationFailureHandlerImpl"
+			authentication-success-handler-ref="authenticationSuccessHandlerImpl"/>
+		<logout logout-success-url="/logout.html" logout-url="logout" invalidate-session="true" delete-cookies="JSESSIONID"/>
+	</http>
+	
+	<authentication-manager>
+		<authentication-provider user-service-ref="userService">
+			<password-encoder hash="md5" />
+		</authentication-provider>
+	</authentication-manager>
+	
+	<beans:bean id="userService" class="org.zyou.security.user.service.impl.UserServiceImpl" />
+	
+	<beans:bean id="authenticationSuccessHandlerImpl" class="org.zyou.security.forward.AuthenticationSuccessHandlerImpl">
+		<beans:property name="forwardUrl" value="/index.html" />
+	</beans:bean>
+	
+	<beans:bean id="authenticationFailureHandlerImpl" class="org.zyou.security.forward.AuthenticationFailureHandlerImpl">
+		<beans:property name="forwardUrl" value="/error.html" />
+	</beans:bean>
+</beans:beans> 
