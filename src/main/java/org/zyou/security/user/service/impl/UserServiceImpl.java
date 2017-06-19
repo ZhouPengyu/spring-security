@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDetails details = null;
-		if(details == null) throw new UsernameNotFoundException(username+"not found");
+//		if(details == null) throw new UsernameNotFoundException(username+"not found");
 		String name = "zhoupengyu";
 		String password = "c5d4263f0a868a9411ae561214c02ebf";
 		boolean enabled = true;	//账号是否激活
