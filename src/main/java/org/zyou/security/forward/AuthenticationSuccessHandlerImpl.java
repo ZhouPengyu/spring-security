@@ -20,7 +20,8 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		request.getRequestDispatcher(forwardUrl).forward(request, response);
+//		request.getRequestDispatcher(forwardUrl).forward(request, response);
+		response.sendRedirect(forwardUrl);
 	}
 
 }

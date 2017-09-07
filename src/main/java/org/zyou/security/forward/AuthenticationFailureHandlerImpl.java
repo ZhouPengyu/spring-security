@@ -20,7 +20,8 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		request.getRequestDispatcher(forwardUrl).forward(request, response);
+//		request.getRequestDispatcher(forwardUrl).forward(request, response);
+		response.sendRedirect(forwardUrl);
 	}
 
 }

@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserDetailsService {
 		UserDetails details = null;
 //		if(details == null) throw new UsernameNotFoundException(username+"not found");
 		String name = "zhoupengyu";
-		String password = "c5d4263f0a868a9411ae561214c02ebf";
+		String password = "c5d4263f0a868a9411ae561214c02ebf";	//zhoupengyu
 		boolean enabled = true;	//账号是否激活
 		boolean accountNonExpired = true; 	//没有过期
 		boolean credentialsNonExpired = true;	//证书没有过期
